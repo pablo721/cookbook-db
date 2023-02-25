@@ -1,0 +1,25 @@
+
+<table id="addinfo_table" border="1" cellpadding="5">
+    <thead>
+        <tr>
+        <th> Koszt netto </th>
+        <th> Cena netto </th>
+        <th> Zysk netto </th>
+        <th> Marża (%) </th>
+        <th> Autor </th>
+        <th> Gramatura </th>
+        </tr>
+    </thead>
+
+    {% if product_data %}
+    <tr>
+        <td> {{ product_data.cost }} zł </td>
+        <td> {{ product_data.price }} zł </td>
+        <td> {{ product_data.profit }} zł </td>
+        <td> {{ product_data.margin }}% </td>
+        <td> {{ product_data.author }} </td>
+        <td> {{ product_data.grammage }} g </td>
+    </tr>
+    {% endif %}
+
+</table>

@@ -1,0 +1,27 @@
+
+<table id="product_table" border="1" cellpadding="5">
+    <thead>
+        <tr>
+            {% for header in fields %}
+            <th>
+                {{ header }}
+            </th>
+            {% endfor %}
+        </tr>
+    </thead>
+
+    {% if products %}
+    {% for product in products %}
+    <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.pack_size }}</td>
+        <td>{{ product.pack_price }} zł</td>
+        <td>{% widthratio product.pack_price product.pack_size 1 %} zł</td>
+        <td>{{ product.supplier }}</td>
+        <td>
+            <input type="checkbox" id="{{ product.id }}">
+        </td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>

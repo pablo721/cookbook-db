@@ -1,0 +1,82 @@
+{% extends 'recipes/recipes.html' %}
+{% load static %}
+
+
+{% block content %}
+<div id="recipe_view">
+    <div id="recipe_title">
+        <h3 id="recipe_name"> {{ recipe }} </h3>
+        <form id="del_recipe" method="POST" action="#">
+            {% csrf_token %}
+            <input type="hidden" name="confirmation" value="" id="confirmation"/>
+            <button type="submit" onclick="confirmDelete()" name="submit" value="delete_recipe" id="delete_recipe"> Usuń recepturę </button>
+        </form>
+    </div>
+
+    <div id="addinfo_table_div">
+        {% include 'recipes/_addinfo_table.html' %}
+    </div>
+
+    <div id="recipe_table_div">
+        <div id="del_products_form">
+            <form id="del_products" method="POST" action="#">
+                {% csrf_token %}
+                <input type="hidden" name="checked_ids" value="" id="js_data_input"/>
+                <button type="submit" onclick="updateChecked()" name="submit" value="Submit" id="delete_product"> Usuń </button>
+            </form>
+        </div>
+        {% include 'recipes/_recipe_table.html' %}
+    </div>
+
+    <div id="recipe_forms">
+        <div id="edit_recipe">
+            <form method="post" action="#">
+            {% csrf_token %}
+                <table cellpadding="5">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                <h4><b> Edycja receptury </b></h4>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{ form_edit_recipe }}
+                    </tbody>
+                </table>
+            <button id="edit_recipe_button" type="submit" name="submit" value="save"> Zapisz </button>
+            </form>
+        </div>
+
+        <div id="add_to_recipe">
+            <form method="post" action="#">
+            {% csrf_token %}
+                <table cellpadding="5">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                <h4><b> Dodaj/zmień składnik </b></h4>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{ form_add_to_recipe }}
+                    </tbody>
+                </table>
+                <button id="add_to_recipe_button" type="submit" value="save"> Dodaj </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{% static 'findChecked.js' %}" type="text/javascript"></script>
+<script src="{% static 'confirmDelete.js' %}" type="text/javascript"></script>
+<script type="text/javascript">
+var recipe_name = "{{ recipe }}";
+console.log(recipe_name);
+</script>
+{% endblock %}
+
+

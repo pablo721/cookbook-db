@@ -1,0 +1,35 @@
+
+<table id="recipe_table" border="1" cellpadding="5">
+    <thead>
+        <tr>
+            <th> Składniki </th>
+            <th> Jednostka miary </th>
+            <th> Cena netto surowca </th>
+            <th> Ilość użyta </th>
+            <th> Wartość netto </th>
+        </tr>
+    </thead>
+
+    {% if product_table %}
+    {% for i in product_table %}
+    <tr>
+        <td> {{ i.0 }} </td>
+        <td> {{ i.1 }} </td>
+        <td> {{ i.2 }} zł </td>
+        <td> {{ i.3 }}
+        {% if i.1 == "kg" %}
+            g
+        {% elif i.1 == "l" %}
+            ml
+        {% else %}
+            szt
+        {% endif %}
+        </td>
+        <td> {{ i.4 }} zł </td>
+        <td>
+            <input type="checkbox" id="{{ i.0 }}">
+        </td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+</table>

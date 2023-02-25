@@ -1,0 +1,16 @@
+{% extends 'website/base.html' %}
+
+<img src="./static/images/jata_logo.png" srcset="./static/images/jata_logo.png 240w" sizes="(max-width: 500px) 200px, 200px" id="logo">
+{% block navbar %}
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a href="{% url 'finance:finance' %}" class="w3-bar-item w3-button w3-padding-large">Finanse</a>
+    <a href="{% url 'recipes:recipes' %}" class="w3-bar-item w3-button w3-padding-large">Receptury</a>
+    <a href="{% url 'products:products' %}" class="w3-bar-item w3-button w3-padding-large">Produkty</a>
+  </div>
+</div>
+{% endblock %}
+
+
+
+

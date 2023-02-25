@@ -1,0 +1,32 @@
+{% extends 'website/base.html' %}
+{% load static %}
+
+
+{% block navbar %}
+    <div class="w3-bar w3-black w3-card">
+        <a href="{% url 'website:index' %}" class="w3-bar-item w3-button w3-padding-large"> Home </a>
+        <a href="{% url 'finance:finance' %}" class="w3-bar-item w3-button w3-padding-large"> Sprawozdania</a>
+        <a href="{% url 'finance:new_income_statement' %}" class="w3-bar-item w3-button w3-padding-large">Dodaj sprawozdanie</a>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+{% endblock %}
+
+{% block content %}
+{% include 'finance/_pnl_table.html' %}
+{% endblock %}
+
+
+{% block javascript %}
+<script src="{% static 'transpose.js' %}" type="text/javascript">
+</script>
+<script src="{% static 'formatRows.js' %}" type="text/javascript">
+</script>
+{% endblock %}
+
+
+
+
+
+

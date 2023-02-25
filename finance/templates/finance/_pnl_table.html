@@ -1,0 +1,42 @@
+
+
+<table id="pnl_table" border="=1" cellpadding="4">
+    <thead>
+
+    </thead>
+    <tbody>
+        <tr>
+            {% for field in fields %}
+            <td>
+                {{ field }}
+            </td>
+            {% endfor %}
+        </tr>
+
+        {% for statement in data %}
+        <tr>
+            {% for value in statement.0 %}
+                <td>
+                    {{ value }}
+                </td>
+            {% endfor %}
+        </tr>
+        <tr>
+            {% for value in statement.1 %}
+                {% if value %}
+                    <td>
+                        {{ value }}%
+                    </td>
+                {% else %}
+                    <td>
+                    </td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+
+

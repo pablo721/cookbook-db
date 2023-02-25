@@ -1,0 +1,55 @@
+{% extends 'website/base.html' %}
+
+{% block navbar %}
+    <div class="w3-bar w3-black w3-card">
+        <a href="{% url 'website:index' %}" class="w3-bar-item w3-button w3-padding-large"> Home </a>
+        <a href="{% url 'recipes:recipes' %}" class="w3-bar-item w3-button w3-padding-large"> Wszystkie receptury </a>
+        {% if categories %}
+        {% for category in categories %}
+        <a href="{% url 'recipes:recipes_cat' category %}" class="w3-bar-item w3-button w3-padding-large">{{ category }}</a>
+        {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <div id="recipes_sidebar" class="w3-list w3-black w3-card">
+        <ul id="recipes_list">
+          {% if recipes %}
+          {% for recipe in recipes %}
+            <li><a href="{% url 'recipes:recipes_recipe' category recipe %}"> {{ recipe }}  </a></li>
+          {% endfor %}
+          {% endif %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% if category %}
+    <h1 id="category_title"><b> {{ category }} </b></h1>
+    {% else %}
+    <h1 id="default_category_title"><b> Wszystkie receptury </b></h1>
+    {% endif %}
+    <div class="container" id="new_recipe">
+    {% if form_new_recipe %}
+        <form method="post" action="#">
+            {% csrf_token %}
+                <table cellpadding="8">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                <h3><b> Nowa receptura </b></h3>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{ form_new_recipe }}
+                    </tbody>
+                </table>
+                <button id="save_recipe" type="submit" value="save"> Zapisz </button>
+        </form>
+    {% endif %}
+    </div>
+{% endblock %}
+
+

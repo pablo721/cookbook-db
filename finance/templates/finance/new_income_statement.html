@@ -1,0 +1,36 @@
+{% extends 'finance/finance.html' %}
+{% load static %}
+
+
+{% block content %}
+<div id="pnl_statement">
+    <h3 id="new_statement_title"><b> Rachunek zysków i strat </b></h3>
+    <form id="pnl_statement_form" method="post" action="#">
+        {% csrf_token %}
+            <table cellpadding="3">
+                <thead>
+                    <th>
+                        <label for="date_input"> Data: </label>
+                    </th>
+                    <th>
+                        <input type="month" id="date_input" name="date_input">
+                    </th>
+                </thead>
+            {{ form }}
+            </table>
+        <button id="save_statement" type="submit" value="save"> Zapisz </button>
+    </form>
+</div>
+{% endblock %}
+
+
+{% block javascript %}
+<script type="text/javascript">
+    let today = new Date();
+    let dateWidget = document.getElementById('date_input');
+    dateWidget.valueAsDate = today;
+</script>
+{% endblock %}
+
+
+
